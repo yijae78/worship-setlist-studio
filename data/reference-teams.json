@@ -1,0 +1,65 @@
+[
+  {
+    "id": "fia",
+    "name": "피아워십",
+    "description": "라이브 예배와 선포의 흐름을 참고하는 기준팀",
+    "styleTags": ["live", "declaration", "praise", "energy"],
+    "flowBias": ["opening", "response"],
+    "emphasis": ["선포", "현장감", "라이브 예배"],
+    "sourceNote": "공개 채널과 소개 문구 기준"
+  },
+  {
+    "id": "yeram",
+    "name": "예람워십",
+    "description": "복음과 전 세대가 함께 드리는 예배 흐름을 참고하는 기준팀",
+    "styleTags": ["gospel", "all-generation", "grace", "worship"],
+    "flowBias": ["grace", "response"],
+    "emphasis": ["복음", "전 세대", "함께 드리는 예배"],
+    "sourceNote": "공개 채널·기사·소개 문구 기준"
+  },
+  {
+    "id": "markers",
+    "name": "마커스워십",
+    "description": "회중 참여와 연합 예배 흐름을 참고하는 기준팀",
+    "styleTags": ["congregational", "unity", "gathering", "worship"],
+    "flowBias": ["opening", "grace", "response"],
+    "emphasis": ["연합", "회중 참여", "집회형 흐름"],
+    "sourceNote": "공식 사이트/소개 기준"
+  },
+  {
+    "id": "isaiah61",
+    "name": "아이자야씩스티원",
+    "description": "회복, 갱신, 다음세대 예배 흐름을 참고하는 기준팀",
+    "styleTags": ["restoration", "renewal", "calling", "next-generation"],
+    "flowBias": ["confession", "grace", "sending"],
+    "emphasis": ["회복", "갱신", "부르심"],
+    "sourceNote": "공식 사이트/소개 기준"
+  },
+  {
+    "id": "jus",
+    "name": "제이어스",
+    "description": "열정적 라이브 예배와 선포적 흐름을 참고하는 기준팀",
+    "styleTags": ["passionate", "prophetic", "declaration", "live"],
+    "flowBias": ["opening", "response", "sending"],
+    "emphasis": ["열정", "선포", "라이브 예배"],
+    "sourceNote": "공개 채널·소개 문구 기준"
+  },
+  {
+    "id": "welove",
+    "name": "WELOVE",
+    "description": "현대적 워십과 다음세대 친밀한 예배 흐름을 참고하는 기준팀",
+    "styleTags": ["contemporary", "intimate", "next-generation", "worship"],
+    "flowBias": ["grace", "response"],
+    "emphasis": ["친밀", "현대적 워십", "다음세대"],
+    "sourceNote": "공개 채널·소개 문구 기준"
+  },
+  {
+    "id": "ywam_tue",
+    "name": "예전단화요모임",
+    "description": "사명과 기도 중심의 예배 흐름을 참고하는 기준팀",
+    "styleTags": ["mission", "prayer", "discipleship", "sending"],
+    "flowBias": ["confession", "response", "sending"],
+    "emphasis": ["사명", "기도", "제자도"],
+    "sourceNote": "공개 채널·소개 문구 기준"
+  }
+]
