@@ -84,6 +84,13 @@ export function HomeScreen() {
       <div className="device-frame" style={{ maxWidth: activeDevice.width }}>
         <WizardShell />
       </div>
+
+      {/* ---- Footer ---- */}
+      <footer className="site-footer">
+        <div className="footer-glow" />
+        <p className="footer-brand">TRINITY AI FORUM</p>
+        <p className="footer-copy">&copy; 2026 Developed by Yijae Shin</p>
+      </footer>
     </main>
   );
 }
