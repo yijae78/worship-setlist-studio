@@ -13,7 +13,7 @@ type StoreState = {
   savedDrafts: SetlistDraft[];
   customSongs: Song[];
   saveStatus: SaveStatus;
-  previewOpen: boolean;
+  wizardStep: number;
   churchName: string;
   worshipDate: string;
   footerNote: string;
@@ -23,6 +23,7 @@ type StoreState = {
   setChurchName: (name: string) => void;
   setWorshipDate: (date: string) => void;
   setFooterNote: (note: string) => void;
+  setWizardStep: (step: number) => void;
   confirmDraft: () => void;
 
   saveDraftToHistory: () => void;
@@ -44,8 +45,6 @@ type StoreState = {
   addCustomSong: (song: Song) => void;
   updateCustomSong: (songId: string, updates: Partial<Song>) => void;
   deleteCustomSong: (songId: string) => void;
-
-  togglePreview: () => void;
 };
 
 function touchDraft(draft: SetlistDraft): SetlistDraft {
@@ -69,16 +68,17 @@ export const useSetlistStore = create<StoreState>()(
       savedDrafts: [],
       customSongs: [],
       saveStatus: "idle",
-      previewOpen: true,
+      wizardStep: 1,
       churchName: "",
       worshipDate: "",
       footerNote: "",
 
-      setDraft: (draft) => set({ currentDraft: draft, saveStatus: "saved" }),
-      resetDraft: () => set({ currentDraft: null, saveStatus: "idle" }),
+      setDraft: (draft) => set({ currentDraft: draft, saveStatus: "saved", wizardStep: 2 }),
+      resetDraft: () => set({ currentDraft: null, saveStatus: "idle", wizardStep: 1 }),
       setChurchName: (name) => set({ churchName: name }),
       setWorshipDate: (date) => set({ worshipDate: date }),
       setFooterNote: (note) => set({ footerNote: note }),
+      setWizardStep: (step) => set({ wizardStep: step }),
 
       confirmDraft: () =>
         set((state) => {
@@ -93,7 +93,8 @@ export const useSetlistStore = create<StoreState>()(
           return {
             currentDraft: confirmed,
             savedDrafts: [stripped, ...others].slice(0, MAX_SAVED_DRAFTS),
-            saveStatus: "saved"
+            saveStatus: "saved",
+            wizardStep: 4
           };
         }),
 
@@ -230,7 +231,6 @@ export const useSetlistStore = create<StoreState>()(
       deleteCustomSong: (songId) =>
         set((state) => ({ customSongs: state.customSongs.filter((s) => s.id !== songId) })),
 
-      togglePreview: () => set((state) => ({ previewOpen: !state.previewOpen }))
     }),
     {
       name: STORAGE_KEYS.currentDraft,
@@ -239,7 +239,7 @@ export const useSetlistStore = create<StoreState>()(
         currentDraft: state.currentDraft,
         savedDrafts: state.savedDrafts,
         customSongs: state.customSongs,
-        previewOpen: state.previewOpen,
+        wizardStep: state.wizardStep,
         churchName: state.churchName,
         worshipDate: state.worshipDate,
         footerNote: state.footerNote
