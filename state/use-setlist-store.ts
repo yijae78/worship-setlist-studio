@@ -31,6 +31,7 @@ type StoreState = {
   deleteSavedDraft: (draftId: string) => void;
 
   moveItem: (itemId: string, direction: "up" | "down") => void;
+  reorderItem: (fromIndex: number, toIndex: number) => void;
   removeItem: (itemId: string) => void;
   addItem: (song: Song, section: FlowSection) => void;
   replaceItem: (itemId: string, song: Song) => void;
@@ -125,6 +126,16 @@ export const useSetlistStore = create<StoreState>()(
           const target = direction === "up" ? idx - 1 : idx + 1;
           if (target < 0 || target >= items.length) return state;
           [items[idx], items[target]] = [items[target], items[idx]];
+          const reordered = items.map((it, i) => ({ ...it, order: i + 1 }));
+          return { currentDraft: touchDraft({ ...state.currentDraft, items: reordered }), saveStatus: "saved" };
+        }),
+
+      reorderItem: (fromIndex, toIndex) =>
+        set((state) => {
+          if (!state.currentDraft) return state;
+          const items = [...state.currentDraft.items];
+          const [moved] = items.splice(fromIndex, 1);
+          items.splice(toIndex, 0, moved);
           const reordered = items.map((it, i) => ({ ...it, order: i + 1 }));
           return { currentDraft: touchDraft({ ...state.currentDraft, items: reordered }), saveStatus: "saved" };
         }),

@@ -6,6 +6,7 @@ import { songCatalog } from "@/lib/song-catalog";
 import { useSetlistStore } from "@/state/use-setlist-store";
 import { validateRecommendInput, normalizeRecommendInput } from "@/lib/validators";
 import { buildRecommendation } from "@/lib/recommendation";
+import { STORAGE_KEYS } from "@/lib/constants";
 import { SongEditorModal } from "@/components/song-editor-modal";
 import { CalendarPicker } from "@/components/calendar-picker";
 import type { Song } from "@/types";
@@ -85,6 +86,18 @@ export function InputPanel() {
           </div>
           <p className="hint">주제 또는 성경본문 중 하나 이상 입력하면 초안을 생성합니다.</p>
         </div>
+        <button
+          type="button"
+          className="reset-btn"
+          onClick={() => {
+            if (!confirm("모든 데이터(콘티, 저장본, 설정)를 초기화할까요?\n이 작업은 되돌릴 수 없습니다.")) return;
+            localStorage.removeItem(STORAGE_KEYS.currentDraft);
+            window.location.reload();
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 1 3.2-6.8"/><path d="M3 2v5h5"/></svg>
+          전체 초기화
+        </button>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
